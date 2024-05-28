@@ -118,9 +118,9 @@
                                     </select>
                                 </div>
                                 <div class="col-sm-6">
-                                  <label class="form-label" for="multiStepsDistrict">Distrik</label>
+                                  <label class="form-label" for="multiStepsDistrict">Kecamatan</label>
                                   <select class="form-select" id="multiStepsDistrict" name="multiStepsDistrict" disabled>
-                                      <option value="" selected disabled>Pilih Distrik</option>
+                                      <option value="" selected disabled>Pilih Kecamatan</option>
                                   </select>
                                 </div>
                                 <div class="col-sm-6">
