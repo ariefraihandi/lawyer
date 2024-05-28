@@ -1,5 +1,12 @@
 @extends('Portal/Index/app-auth')
 
+@push('head-script')
+    <link rel="stylesheet" href="{{ asset('portal_assets') }}/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="{{ asset('portal_assets') }}/assets/vendor/libs/typeahead-js/typeahead.css" />
+    <link rel="stylesheet" href="{{ asset('portal_assets') }}/assets/vendor/libs/@form-validation/umd/styles/index.min.css" />
+    <link rel="stylesheet" href="{{ asset('portal_assets') }}/assets/vendor/css/pages/page-auth.css" />
+@endpush
+
 @section('content')
     <div class="container-xxl">
         <div class="authentication-wrapper authentication-basic container-p-y">
@@ -14,7 +21,6 @@
                             <img src="{{ asset('assets/images/icon.webp') }}" alt="Logo" width="100">
                         </span>                        
                     </a>
-                    
                 </div>
                 <!-- /Logo -->
                 <div style="text-align: center;">
@@ -64,28 +70,11 @@
                 </form>
 
                 <p class="text-center">
-                <span>New on our platform?</span>
-                <a href="auth-register-basic.html">
-                    <span>Create an account</span>
+                <span>Belum punya akun?</span>
+                <a href="{{ route('showRegister') }}">
+                    <span>Daftar</span>
                 </a>
                 </p>
-
-                <div class="divider my-4">
-                <div class="divider-text">or</div>
-                </div>
-
-                <div class="d-flex justify-content-center">
-                <a href="javascript:;" class="btn btn-icon btn-label-facebook me-3">
-                    <i class="tf-icons bx bxl-facebook"></i>
-                </a>
-
-                <a href="javascript:;" class="btn btn-icon btn-label-google-plus me-3">
-                    <i class="tf-icons bx bxl-google-plus"></i>
-                </a>
-
-                <a href="javascript:;" class="btn btn-icon btn-label-twitter">
-                    <i class="tf-icons bx bxl-twitter"></i>
-                </a>
                 </div>
             </div>
             </div>
@@ -95,3 +84,20 @@
     </div>
 @endsection
 
+
+@push('footer-script')  
+    <script src="{{ asset('portal_assets') }}/assets/vendor/libs/@form-validation/umd/bundle/popular.min.js"></script>
+    <script src="{{ asset('portal_assets') }}/assets/vendor/libs/@form-validation/umd/plugin-bootstrap5/index.min.js"></script>
+    <script src="{{ asset('portal_assets') }}/assets/vendor/libs/@form-validation/umd/plugin-auto-focus/index.min.js"></script>
+    <script src="{{ asset('portal_assets/assets') }}/vendor/libs/sweetalert2/sweetalert2.js"></script>
+@endpush
+
+@push('footer-Sec-script')
+    <script src="{{ asset('portal_assets') }}/assets/js/pages-auth.js"></script>
+    <script>
+        @if(session('response'))
+            var response = @json(session('response'));
+            showSweetAlert(response);
+        @endif
+    </script>  
+@endpush

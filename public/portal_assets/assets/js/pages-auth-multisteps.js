@@ -4,22 +4,6 @@
 
 'use strict';
 
-// Select2 (jquery)
-$(function () {
-  var select2 = $('.select2');
-
-  // select2
-  if (select2.length) {
-    select2.each(function () {
-      var $this = $(this);
-      $this.wrap('<div class="position-relative"></div>');
-      $this.select2({
-        placeholder: 'Select an country',
-        dropdownParent: $this.parent()
-      });
-    });
-  }
-});
 
 // Multi Steps Validation
 // --------------------------------------------------------------------
@@ -31,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
       const stepsValidationForm = stepsValidation.querySelector('#multiStepsForm');
       // Form steps
       const stepsValidationFormStep1 = stepsValidationForm.querySelector('#accountDetailsValidation');
-      const stepsValidationFormStep2 = stepsValidationForm.querySelector('#personalInfoValidation');
+      const stepsValidationFormStep2 = stepsValidationForm.querySelector('#officeInfoValidation');
       const stepsValidationFormStep3 = stepsValidationForm.querySelector('#billingLinksValidation');
       // Multi steps next prev button
       const stepsValidationNext = [].slice.call(stepsValidationForm.querySelectorAll('.btn-next'));
@@ -98,20 +82,36 @@ document.addEventListener('DOMContentLoaded', function (e) {
       // Account details
       const multiSteps1 = FormValidation.formValidation(stepsValidationFormStep1, {
         fields: {
-          multiStepsUsername: {
+          multiStepsName: {
             validators: {
               notEmpty: {
-                message: 'Please enter username'
+                message: 'Please enter name'
               },
               stringLength: {
-                min: 6,
-                max: 30,
-                message: 'The name must be more than 6 and less than 30 characters long'
+                min: 4,
+                max: 50,
+                message: 'The name must be more than 5 and less than 45 characters long'
               },
               regexp: {
-                regexp: /^[a-zA-Z0-9 ]+$/,
-                message: 'The name can only consist of alphabetical, number and space'
-              }
+                regexp: /^[a-zA-Z.,' ]+$/,
+                message: 'Nama hanya boleh terdiri dari huruf, titik, koma, dan spasi'
+              }          
+            }
+          },
+          multiStepsUsername: {
+            validators: {
+                notEmpty: {
+                    message: 'Silakan masukkan username'
+                },
+                stringLength: {
+                    min: 4,
+                    max: 50,
+                    message: 'Panjang nama harus antara 4 dan 50 karakter'
+                },
+                regexp: {
+                    regexp: /^[a-z_]+$/,
+                    message: 'Nama hanya boleh terdiri dari huruf kecil dan garis bawah (_)'
+                }
             }
           },
           multiStepsEmail: {
@@ -143,6 +143,45 @@ document.addEventListener('DOMContentLoaded', function (e) {
                 message: 'The password and its confirm are not the same'
               }
             }
+          },
+          multiStepsWhatsapp: {
+            validators: {
+              notEmpty: {
+                message: 'Masukkan nomor WhatsApp'
+              },
+              regexp: {
+                regexp: /^[0-9]+$/,
+                message: 'Masukkan hanya angka'
+              }
+            }
+          },          
+          multiStepsProvince: {
+            validators: {
+                notEmpty: {
+                    message: 'Silakan pilih Provinsi'
+                }
+            }
+          },
+          multiStepsRegency: {
+              validators: {
+                  notEmpty: {
+                      message: 'Silakan pilih Kabupaten/Kota'
+                  }
+              }
+          },
+          multiStepsDistrict: {
+              validators: {
+                  notEmpty: {
+                      message: 'Silakan pilih Kecamatan'
+                  }
+              }
+          },
+          multiStepsVillage: {
+              validators: {
+                  notEmpty: {
+                      message: 'Silakan pilih Desa'
+                  }
+              }
           }
         },
         plugins: {
@@ -171,11 +210,20 @@ document.addEventListener('DOMContentLoaded', function (e) {
       // Personal info
       const multiSteps2 = FormValidation.formValidation(stepsValidationFormStep2, {
         fields: {
-          multiStepsFirstName: {
+          officeName: {
             validators: {
               notEmpty: {
-                message: 'Please enter first name'
-              }
+                message: 'Please enter Office Name'
+              },
+              stringLength: {
+                min: 4,
+                max: 50,
+                message: 'min 5, max 50 Karakter'
+              },
+              regexp: {
+                regexp: /^[a-zA-Z.,' ]+$/,
+                message: 'Nama hanya boleh terdiri dari huruf, titik, koma, dan spasi'
+              }          
             }
           },
           multiStepsAddress: {

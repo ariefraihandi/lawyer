@@ -2527,6 +2527,17 @@ textarea.form-control-lg {
     pointer-events: none;
     opacity: 0.65; }
 
+/* Custom tooltip styling */
+.tooltip-inner {
+  background-color: #d4a971 !important; /* Red background with some transparency */
+  color: white !important; /* White text */  
+}
+
+.tooltip .arrow::before {
+  border-top-color: #d4a971 !important;
+}
+
+
 .btn-primary {
   color: #fff;
   background-color: #00204a;

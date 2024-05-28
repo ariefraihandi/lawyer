@@ -8,15 +8,11 @@
 <script src="{{ asset('portal_assets') }}/assets/vendor/libs/typeahead-js/typeahead.js"></script>
 <script src="{{ asset('portal_assets') }}/assets/vendor/js/menu.js"></script>
 
-<!-- endbuild -->
-
 <!-- Vendors JS -->
-<script src="{{ asset('portal_assets') }}/assets/vendor/libs/@form-validation/umd/bundle/popular.min.js"></script>
-<script src="{{ asset('portal_assets') }}/assets/vendor/libs/@form-validation/umd/plugin-bootstrap5/index.min.js"></script>
-<script src="{{ asset('portal_assets') }}/assets/vendor/libs/@form-validation/umd/plugin-auto-focus/index.min.js"></script>
+@stack('footer-script')
 
 <!-- Main JS -->
 <script src="{{ asset('portal_assets') }}/assets/js/main.js"></script>
 
 <!-- Page JS -->
-<script src="{{ asset('portal_assets') }}/assets/js/pages-auth.js"></script>
+@stack('footer-Sec-script')

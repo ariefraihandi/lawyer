@@ -2,32 +2,25 @@
 @section('content')
 <div class="hero">
     <div class="hero-slide">
-      <div
-        class="img overlay"
-        style="background-image: url('{{ asset('assets') }}/images/hero_bg_3.jpg')"
-      ></div>
-      <div
-        class="img overlay"
-        style="background-image: url('{{ asset('assets') }}/images/hero_bg_2.jpg')"
-      ></div>
-      <div
-        class="img overlay"
-        style="background-image: url('{{ asset('assets') }}/images/hero_bg_1.jpg')"
-      ></div>
+      <div class="img overlay" style="background-image: url('{{ asset('assets') }}/images/hero_bg_5.webp')" alt="Pengacara profesional di bilikhukum.com"></div>
+      <div class="img overlay" style="background-image: url('{{ asset('assets') }}/images/hero_bg_4.webp')" alt="Konsultasi hukum terpercaya di bilikhukum.com"></div>
+      <div class="img overlay" style="background-image: url('{{ asset('assets') }}/images/hero_bg_3.webp')" alt="Layanan hukum cepat dan mudah di bilikhukum.com"></div>
+      <div class="img overlay" style="background-image: url('{{ asset('assets') }}/images/hero_bg_2.webp')" alt="Jasa pengacara handal di bilikhukum.com"></div>
+      <div class="img overlay" style="background-image: url('{{ asset('assets') }}/images/hero_bg_1.webp')" alt="Temukan pengacara terbaik di bilikhukum.com"></div>      
     </div>
 
     <div class="container">
       <div class="row justify-content-center align-items-center">
           <div class="col-lg-9 text-center">
               <h1 class="heading" data-aos="fade-up">Cari Pengacara Terbaik Di Sekitar Anda</h1>
-              <form action="#" class="narrow-w form-search d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="200">
-                <input type="text" id="searchInput" class="form-control px-4 autocomplete-input" placeholder="Provinsi Atau Kabupaten/Kota">
-                <input type="hidden" id="selectedValue" name="selectedValue">
-                <button type="submit" class="btn btn-primary">Cari</button>
+              <form id="searchForm" class="narrow-w form-search d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="200">
+                  <input type="text" id="searchInput" class="form-control px-4 autocomplete-input" placeholder="Provinsi Atau Kabupaten/Kota" data-toggle="tooltip" data-placement="top" title="Silahkan Pilih Opsi Wilayah Yang Ditawarkan">
+                  <input type="hidden" id="selectedValue" name="selectedValue">
+                  <button type="submit" class="btn btn-primary" id="searchButton">Cari</button>
               </form>
           </div>
       </div>
-    </div>
+    </div>  
   </div>
 
   <div class="section" id="pengacara-disekitar">
@@ -837,38 +830,71 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script>
-  $(document).ready(function() {
-      $("#searchInput").autocomplete({
-          source: function(request, response) {
-              $.ajax({
-                  url: '{{ route("search") }}',
-                  type: 'GET',
-                  dataType: 'json',
-                  data: {
-                      search: request.term
-                  },
-                  success: function(data) {
-                      response(data);
-                  }
-              });
-          },
-          minLength: 1,
-          select: function(event, ui) {
-              // Set nilai yang dipilih ke dalam hidden input
-              $("#selectedValue").val(ui.item.text);
-          }
-      });
-  });
-  $(document).ready(function() {
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('searchInput');
+    const selectedValue = document.getElementById('selectedValue');
+    const searchForm = document.getElementById('searchForm');
+
+    // Initialize Bootstrap tooltip
+    $(searchInput).tooltip({ trigger: 'manual' });
+
+    searchInput.addEventListener('input', function() {
+        if (searchInput.value.length === 0) {
+            selectedValue.value = ''; // Clear selectedValue if input is cleared
+        }
+    });
+
+    searchForm.addEventListener('submit', function(event) {
+        if (!selectedValue.value) {
+            event.preventDefault();
+            $(searchInput).tooltip('show');
+        } else {
+            $(searchInput).tooltip('hide');
+            // Continue with the form submission or other logic
+        }
+    });
+});
+
+$(document).ready(function() {
+    $("#searchInput").autocomplete({
+        source: function(request, response) {
+            $.ajax({
+                url: '{{ route("search") }}',
+                type: 'GET',
+                dataType: 'json',
+                data: {
+                    search: request.term
+                },
+                success: function(data) {
+                    response(data);
+                }
+            });
+        },
+        minLength: 1,
+        select: function(event, ui) {
+            // Set selected value only when an option is clicked
+            $("#selectedValue").val(ui.item.value);
+            $(searchInput).tooltip('hide'); // Hide the tooltip when an option is selected
+        }
+    });
+
     // Tangani peristiwa klik pada tombol cari
     $(".form-search button[type='submit']").click(function(e) {
         e.preventDefault(); // Menghentikan perilaku bawaan tombol submit
 
-        // Mengarahkan pengguna ke bagian bawah halaman
-        $('html, body').animate({
-            scrollTop: $('#pengacara-disekitar').offset().top
-        }, 400); // Durasi animasi dalam milidetik
+        const selectedValue = $("#selectedValue").val();
+
+        if (!selectedValue) {
+            $("#searchInput").tooltip('show');
+        } else {
+            $("#searchInput").tooltip('hide');
+            // Mengarahkan pengguna ke bagian bawah halaman
+            $('html, body').animate({
+                scrollTop: $('#pengacara-disekitar').offset().top
+            }, 400); // Durasi animasi dalam milidetik
+        }
     });
 });
+
   </script>
 @endpush
