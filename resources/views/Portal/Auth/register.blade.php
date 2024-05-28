@@ -412,7 +412,7 @@
             placeholder: 'Pilih Provinsi',
             allowClear: true,
             ajax: {
-                url: '/provinces',
+                url: '{{ route("getProvinces") }}',
                 type: 'GET',
                 dataType: 'json',
                 processResults: function(data) {
@@ -450,7 +450,7 @@
               placeholder: 'Pilih Kabupaten/Kota',
               allowClear: true,
               ajax: {
-                url: '/regencies',
+                url: '{{ route("getRegencies") }}',
                 type: 'GET',
                 dataType: 'json',
                 data: function (params) {
@@ -490,7 +490,7 @@
                       placeholder: 'Pilih Distrik',
                       allowClear: true,
                       ajax: {
-                          url: '/districts',
+                        url: '{{ route("getDistricts") }}',
                           type: 'GET',
                           dataType: 'json',
                           data: function (params) {
@@ -523,7 +523,7 @@
                       placeholder: 'Pilih Desa',
                       allowClear: true,
                       ajax: {
-                          url: '/villages',
+                        url: '{{ route("getVillages") }}',
                           type: 'GET',
                           dataType: 'json',
                           data: function (params) {
