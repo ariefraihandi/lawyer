@@ -27,6 +27,7 @@ class CreateKantorsTable extends Migration
             $table->boolean('agreement')->default(false);
             $table->integer('paket')->default(0);
             $table->string('referedby');
+            $table->string('type');
             $table->timestamps();
         });
     }
