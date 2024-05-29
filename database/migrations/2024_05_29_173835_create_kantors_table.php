@@ -26,6 +26,7 @@ class CreateKantorsTable extends Migration
             $table->string('dokumen_pendirian')->nullable();
             $table->boolean('agreement')->default(false);
             $table->integer('paket')->default(0);
+            $table->string('referedby');
             $table->timestamps();
         });
     }
