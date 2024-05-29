@@ -13,7 +13,7 @@ class CreateDistrictsTable extends Migration
      */
     public function up()
     {
-        Schema::create('districts', function (Blueprint $table) {
+        Schema::connection('mysql')->create('districts', function (Blueprint $table) {
             $table->id(); // Primary key, auto-increment
             $table->string('regency_code');
             $table->string('code')->unique(); // Kode kecamatan
@@ -32,6 +32,6 @@ class CreateDistrictsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('districts');
+        Schema::connection('mysql')->dropIfExists('districts');
     }
 }

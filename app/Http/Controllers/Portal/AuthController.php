@@ -37,6 +37,21 @@ class AuthController extends Controller
                 abort(403, 'Unauthorized access');
             }
         }
+        public function getProvincesOffice(Request $request)
+        {
+            if ($request->ajax()) {
+                $search = $request->input('search'); // Mengambil nilai pencarian dari request
+        
+                // Mengambil data provinsi dengan filter berdasarkan nama jika ada parameter pencarian
+                $provinces = Province::when($search, function ($query) use ($search) {
+                    return $query->where('name', 'like', '%'.$search.'%');
+                })->get();
+        
+                return response()->json($provinces);
+            } else {
+                abort(403, 'Unauthorized access');
+            }
+        }
     
         public function getRegencies(Request $request)
         {

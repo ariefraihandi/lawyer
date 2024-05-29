@@ -13,7 +13,7 @@ class CreateProvincesTable extends Migration
      */
     public function up()
     {
-        Schema::create('provinces', function (Blueprint $table) {
+        Schema::connection('mysql')->create('provinces', function (Blueprint $table) {
             $table->id(); // Primary key, auto-increment
             $table->string('code')->unique(); // Kode provinsi
             $table->string('name'); // Nama provinsi
@@ -28,6 +28,6 @@ class CreateProvincesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('provinces');
+        Schema::connection('mysql')->dropIfExists('provinces');
     }
 };

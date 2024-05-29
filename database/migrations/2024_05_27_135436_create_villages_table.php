@@ -13,7 +13,7 @@ class CreateVillagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('villages', function (Blueprint $table) {
+        Schema::connection('mysql')->create('villages', function (Blueprint $table) {
             $table->id(); // Primary key, auto-increment
             $table->string('district_code');
             $table->string('code')->unique(); // Kode desa/kelurahan
@@ -32,6 +32,6 @@ class CreateVillagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('villages');
+        Schema::connection('mysql')->dropIfExists('villages');
     }
 };

@@ -8,7 +8,7 @@ class CreateRegenciesTable extends Migration
 {
     public function up()
     {
-        Schema::create('regencies', function (Blueprint $table) {
+        Schema::connection('mysql')->create('regencies', function (Blueprint $table) {
             $table->id(); // Primary key, auto-increment
             $table->string('province_code');
             $table->string('code')->unique(); // Kode kabupaten/kota
@@ -22,6 +22,6 @@ class CreateRegenciesTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('regencies');
+        Schema::connection('mysql')->dropIfExists('regencies');
     }
 };

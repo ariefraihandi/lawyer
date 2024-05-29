@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
           multiStepsUsername: {
             validators: {
                 notEmpty: {
-                    message: 'Silakan masukkan username'
+                    message: 'Silakan Input username'
                 },
                 stringLength: {
                     min: 4,
@@ -147,11 +147,11 @@ document.addEventListener('DOMContentLoaded', function (e) {
           multiStepsWhatsapp: {
             validators: {
               notEmpty: {
-                message: 'Masukkan nomor WhatsApp'
+                message: 'Input nomor WhatsApp'
               },
               regexp: {
                 regexp: /^[0-9]+$/,
-                message: 'Masukkan hanya angka'
+                message: 'Input hanya angka'
               }
             }
           },          
@@ -213,7 +213,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
           officeName: {
             validators: {
               notEmpty: {
-                message: 'Please enter Office Name'
+                message: 'Input nama kantor'
               },
               stringLength: {
                 min: 4,
@@ -226,7 +226,39 @@ document.addEventListener('DOMContentLoaded', function (e) {
               }          
             }
           },
-          multiStepsAddress: {
+          officeEmail: {
+            validators: {
+              notEmpty: {
+                message: 'Please enter email address'
+              },
+              emailAddress: {
+                message: 'The value is not a valid email address'
+              }
+            }
+          },
+          officePhone: {
+            validators: {
+              notEmpty: {
+                message: 'Input nomor HP/WhatsApp'
+              },
+              regexp: {
+                regexp: /^[0-9]+$/,
+                message: 'Inputan hanya angka'
+              }
+            }
+          },
+          postCode: {
+            validators: {
+              notEmpty: {
+                message: 'Input Kode Post'
+              },
+              regexp: {
+                regexp: /^[0-9]+$/,
+                message: 'Input hanya angka'
+              }
+            }
+          },
+          officeAddress: {
             validators: {
               notEmpty: {
                 message: 'Please enter your address'
